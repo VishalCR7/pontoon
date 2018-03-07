@@ -136,3 +136,34 @@ def test_view_translate_force_suggestions(project_locale0,
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
     assert response.status_code == 200
     assert Translation.objects.last().approved is False
+
+
+@pytest.mark.django_db
+def test_view_lang_agnostic(user1, project1, locale1, client):
+    """
+    Save/suggest button should always do what the current label says and
+    be independent from the user settings in different browser tabs.
+    """
+    profile = user1.profile
+    profile.custom_homepage = locale1.code
+    profile.save()
+
+    view = reverse(
+        'pontoon.translate.locale.agnostic',
+        kwargs=dict(slug=project1.slug, part='BAR'))
+    view1 = reverse(
+        'pontoon.translate',
+        kwargs=dict(slug=project1.slug, locale=locale1.code, part='BAR'))
+    view2 = reverse(
+        'pontoon.projects.project',
+        kwargs=dict(slug=project1.slug))
+
+    response0 = client.get(view)
+    client.force_login(user1)
+    response1 = client.get(view)
+
+    # assertRedirects(response, reverse('app:login'), fetch_redirect_response=False)
+    assert response0.status_code == 302 and response1.status_code == 302
+    assert response1['Location'] == view1
+    assert response0['Location'] == view2
+
