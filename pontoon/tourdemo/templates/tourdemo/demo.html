@@ -477,8 +477,7 @@
 </aside>
 
 <!-- Website placeholder + iframe fix: prevent iframes from capturing the mousemove events during a drag -->
-<iframe id="source"{% if project.pk == 1 %} src="#"{% endif %}></iframe>
-<div id="iframe-cover"></div>
+
 
 <!-- Project loading indicator -->
 <div id="project-load" class="overlay">
@@ -517,5 +516,6 @@
 {% block extend_js %}
   <!-- TODO: integrate into django-pipeline -->
   <script type="text/javascript" src="{{ static('js/lib/fluent-syntax.js') }}"></script>
-  {% javascript 'translate' %}
+  <script type="text/javascript" src="{{ static('js/lib/fluent-syntax.js') }}"></script>
+  {% javascript 'tourdemo' %}
 {% endblock %}

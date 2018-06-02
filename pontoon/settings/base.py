@@ -315,6 +315,7 @@ PIPELINE_CSS = {
     'translate': {
         'source_filenames': (
             'css/jquery-ui.css',
+            'enjoyhint/jquery.enjoyhint.css',
             'css/jquery-ui-timepicker-addon.css',
             'css/translate.css',
         ),
@@ -487,6 +488,23 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/machinery.min.js',
     },
+    'tourdemo': {
+        'source_filenames': (
+            'js/lib/jquery-ui.js',
+            'js/lib/jquery-ui-timepicker-addon.js',
+            'js/lib/jquery.mark.js',
+            'js/lib/highstock.js',
+            'js/lib/diff.js',
+            'js/fluent_interface.js',
+            'js/translate.js',
+            'enjoyhint/enjoyhint.js',
+            'enjoyhint/jquery.enjoyhint.js',
+            'enjoyhint/kinetic.min.js',
+            'js/tour.js',
+        ),
+        'output_filename': 'js/demo.min.js',
+    },
+
 }
 
 # Cache config
