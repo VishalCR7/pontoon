@@ -315,7 +315,7 @@ PIPELINE_CSS = {
     'translate': {
         'source_filenames': (
             'css/jquery-ui.css',
-            'enjoyhint/jquery.enjoyhint.css',
+            'enjoyhint/enjoyhint.css',
             'css/jquery-ui-timepicker-addon.css',
             'css/translate.css',
         ),
@@ -497,9 +497,7 @@ PIPELINE_JS = {
             'js/lib/diff.js',
             'js/fluent_interface.js',
             'js/translate.js',
-            'enjoyhint/enjoyhint.js',
-            'enjoyhint/jquery.enjoyhint.js',
-            'enjoyhint/kinetic.min.js',
+            'enjoyhint/enjoyhint.min.js',
             'js/tour.js',
         ),
         'output_filename': 'js/demo.min.js',

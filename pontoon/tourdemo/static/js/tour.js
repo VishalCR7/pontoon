@@ -2,24 +2,47 @@
 //simple config.
 //Only one step - highlighting(with description) "New" button
 //hide EnjoyHint after a click on the button.
+function click() {
+if (event.button==1 || event.button==2) {
+alert('No clicking!')
+}
+}
 var enjoyhint_script_steps = [
-		{
-          selector:'body > header',
-          event:'next',
-          description:'Set first task as completed',
-          timeout:100
-        },
+	     {
+    			'next header' : 'The main toolbar allows you to navigate between projects without leaving the translation workspace'
+          }  ,
  		 {
-          selector:'#progress .number',
+          'click #progress .number': 'An overview of the status of the selected resource is located to the right of the main toolbar. Translators can view the overview in detail by clicking it once.',
+          'shape':'circle',
+          'showSkip' : false,
+        },
+          {
+          onBeforeStart: function(){
+            $("#entitylist").children().css('pointer-events','none');
+          },
+          selector:'#entitylist',
+          event:'to_do',
+          event_type:'custom',
+          description:'The sidebar displays the list of strings in the current project resource.<br> Each string is displayed with the string status (i.e. Missing, Translated, etc.) <br> identified by a colored square, the source string, <br> and the approved translation or the most recent suggestion if available',
+          'showSkip' : false,
+          'showNext': true
+        },
+       {
+          onBeforeStart: function(){
+            $("#entitylist").children().css('pointer-events','auto');
+
+          },
+          selector:'.editables li:first-child',
           event:'click',
-          description:'Set first task as completed',
-          shape:'circle',
+          description:'Selecting an entity by clicking it opens up the editor.',
+          'showSkip' : false,
+          'showNext': false,
         },
         {
-          selector:'.details div.translated',
-          event:'click',
-          description:'Select all completed tasks',
-        },
+    			'next header' : '',
+    			'showSkip' : false,
+				'nextButton' : {className: "myNext", text: "Got it!"}
+          }  ,
 ]
 var enjoyhint_instance = null;
       $(document).ready(function(){
