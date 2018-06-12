@@ -453,6 +453,7 @@ PIPELINE_JS = {
             'js/fluent_interface.js',
             'js/translate.js',
             'js/lib/introjs/intro.js',
+            'js/tour.js',
         ),
         'output_filename': 'js/translate.min.js',
     },
