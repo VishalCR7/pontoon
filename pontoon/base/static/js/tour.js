@@ -8,7 +8,9 @@ function startIntro() {
       }
     ]
   });
-  intro.start();
+  intro.setOptions({
+      exitOnOverlayClick: false
+  }).start();
 }
 
 $(document).ready(function() {
