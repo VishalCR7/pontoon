@@ -55,19 +55,34 @@ def home(request):
     """Home view."""
 
     user = request.user
+    top_contributed_locale = ''
 
     # Redirect user to the selected home page or '/'.
-    if user.is_authenticated() and user.profile.custom_homepage != '':
-        # If custom homepage not set yet, set it to the most contributed locale team page
-        if user.profile.custom_homepage is None:
-            if user.top_contributed_locale:
-                user.profile.custom_homepage = user.top_contributed_locale
-                user.profile.save(update_fields=['custom_homepage'])
+    if user.is_authenticated():
+        if user.top_contributed_locale:
+            top_contributed_locale = user.top_contributed_locale
 
-        if user.profile.custom_homepage:
-            return redirect('pontoon.teams.team', locale=user.profile.custom_homepage)
+        if user.profile.custom_homepage != '':
+            # If custom homepage not set yet, set it to the most contributed locale team page
+            if user.profile.custom_homepage is None:
+                if top_contributed_locale:
+                    user.profile.custom_homepage = top_contributed_locale
+                    user.profile.save(update_fields=['custom_homepage'])
 
-    return render(request, 'home.html')
+            if user.profile.custom_homepage:
+                return redirect('pontoon.teams.team', locale=user.profile.custom_homepage)
+
+    # Select preffered locale for the tour
+    try:
+        project = Project.objects.get(slug='demo')
+        pref_locale = utils.get_project_locale_from_request(request, project.locales) or 'en-GB'
+    except Project.DoesNotExist:
+        pref_locale = 'en-GB'
+
+    if top_contributed_locale:
+        pref_locale = top_contributed_locale
+
+    return render(request, 'home.html', {'locale': pref_locale})
 
 
 # TRANSLATE VIEWs
