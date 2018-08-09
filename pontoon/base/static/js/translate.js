@@ -4052,10 +4052,16 @@ var Pontoon = (function (my) {
       var $editor = $('#editor'),
           $sidebar = $('#sidebar');
 
-      if ((this.requiresInplaceEditor() && !$editor.is('.opened') && this.project.url) ||
-          (!this.requiresInplaceEditor() && $sidebar.is('.no'))) {
+      if (this.requiresInplaceEditor() && !$editor.is('.opened')) {
+        if (this.project && this.project.url) {
+          return;
+        }
+      }
+
+      if (!this.requiresInplaceEditor() && $sidebar.is('.no')) {
         return;
       }
+
       return $editor[0].entity;
     },
 
