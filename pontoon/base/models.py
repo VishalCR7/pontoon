@@ -2956,6 +2956,13 @@ class Translation(DirtyFieldsMixin, models.Model):
     )
     unrejected_date = models.DateTimeField(null=True, blank=True)
 
+    MT_SOURCES = (
+        ("translation-memory", "Translation memory"),
+        ("machine-translation", "Machine translation"),
+    )
+
+    machinery_source = models.CharField(max_length=20, choices=MT_SOURCES, blank=True, null=True)
+
     objects = TranslationQuerySet.as_manager()
 
     # extra stores data that we want to save for the specific format
