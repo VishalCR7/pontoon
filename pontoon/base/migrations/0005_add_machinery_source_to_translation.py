@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('base', '0004_make_old_projects_public_again'),
+        ("base", "0004_make_old_projects_public_again"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='translation',
-            name='machinery_source',
-            field=models.CharField(blank=True, choices=[('translation-memory', 'Translation memory'), ('machine-translation', 'Machine translation')], max_length=20, null=True),
+            model_name="translation",
+            name="machinery_source",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("translation-memory", "Translation memory"),
+                    ("machine-translation", "Machine translation"),
+                ],
+                max_length=20,
+                null=True,
+            ),
         ),
     ]

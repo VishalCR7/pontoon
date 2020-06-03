@@ -2961,7 +2961,9 @@ class Translation(DirtyFieldsMixin, models.Model):
         ("machine-translation", "Machine translation"),
     )
 
-    machinery_source = models.CharField(max_length=20, choices=MT_SOURCES, blank=True, null=True)
+    machinery_source = models.CharField(
+        max_length=20, choices=MT_SOURCES, blank=True, null=True
+    )
 
     objects = TranslationQuerySet.as_manager()
 
