@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("base", "0004_make_old_projects_public_again"),
+        ("base", "0005_add_terminology_project"),
     ]
 
     operations = [
