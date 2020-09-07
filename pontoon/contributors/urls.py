@@ -6,7 +6,7 @@ from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
-    # Legacy: Redirect to /contributors/email
+    # Legac Redirect to /contributors/email
     url(
         r"^contributor/(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/$",
         RedirectView.as_view(url="/contributors/%(email)s/", permanent=True),
